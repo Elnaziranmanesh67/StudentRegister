@@ -16,6 +16,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 @Component
 @Service
 @Qualifier("UserServiceImpl")
@@ -30,7 +32,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserCreateModel create(UserCreateModel userModel) throws Exception {
 
-        User user = userRepository.findByUsername(userModel.getUsername());
+        User user = userRepository.findByUsernameAndNationalCode(userModel.getUsername(),userModel.getNationalCode());
         if (user != null) {
             throw new Exception("کاربر قبلا ثبت نام کرده است");
         }
@@ -45,6 +47,8 @@ public class UserServiceImpl implements UserService {
         user.setLastName(userModel.getLastName());
         user.setNationalCode(userModel.getNationalCode());
         user.setPassword(passwordEncoder.encode(userModel.getPassword()));
+
+        user.setCreatedAt(new Date());
         userRepository.save(user);
         return user;
     }
@@ -78,7 +82,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserOutPutModel checkRole(UserModel userModel) throws Exception {
-        User user = userRepository.findByNationalCodeAndUsername(userModel.getNationalCode(), userModel.getUsername());
+        User user = userRepository.findByUsernameAndNationalCode(userModel.getUsername(), userModel.getNationalCode());
         if (user == null) {
             throw new Exception("USER_NOT_FOUND");
         }

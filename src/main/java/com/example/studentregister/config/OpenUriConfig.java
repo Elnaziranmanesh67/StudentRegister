@@ -8,7 +8,7 @@ public final class OpenUriConfig {
     }
 
     public static final String[][] OPEN_URIS = {
-            {"/auth/register", "POST"},
-            {"/auth/login", "POST"}
+            {"/auth/register", "POST"}
+
     };
 }

@@ -2,6 +2,7 @@
 package com.example.studentregister.jwtService;
 
 import com.example.studentregister.config.CustomUserDetailsService;
+import com.example.studentregister.config.OpenUriConfig;
 import com.example.studentregister.user.orm.User;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
@@ -35,7 +36,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             HttpServletResponse response,
             FilterChain filterChain
     ) throws ServletException, IOException {
-
         String authHeader = request.getHeader("Authorization");
 
         // اگر هدر Authorization وجود ندارد، درخواست ادامه پیدا می‌کند.
@@ -130,5 +130,19 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 new ObjectMapper()
                         .writeValueAsString(body)
         );
+    }
+
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+
+        for (String[] uri : OpenUriConfig.OPEN_URIS) {
+            if (request.getMethod().equals(uri[1])
+                    && request.getServletPath().equals(uri[0])) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

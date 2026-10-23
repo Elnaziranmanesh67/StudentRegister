@@ -40,7 +40,7 @@ public class User implements UserDetails {
     @Column(name = "national_code", unique = true)
     private String nationalCode;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at")
     private Date createdAt;
 
     @Override

@@ -71,12 +71,12 @@ public class SecurityConfig {
                         )
                 )
 
-                // مدیریت خطاهای 401 و 403
+                // مدیریت خطاهای احراز هویت و مجوز دسترسی
                 .exceptionHandling(exception -> exception
 
-                        // 401 Unauthorized
                         .authenticationEntryPoint(
                                 (request, response, authException) -> {
+
                                     response.setStatus(
                                             HttpServletResponse.SC_UNAUTHORIZED
                                     );
@@ -106,9 +106,9 @@ public class SecurityConfig {
                                 }
                         )
 
-                        // 403 Forbidden
                         .accessDeniedHandler(
-                                (request, response, accessDeniedException) -> {
+                                (request, response, exception403) -> {
+
                                     response.setStatus(
                                             HttpServletResponse.SC_FORBIDDEN
                                     );
@@ -139,25 +139,21 @@ public class SecurityConfig {
                         )
                 )
 
-                // تعیین APIهای عمومی از روی OpenUriConfig
-                .authorizeHttpRequests(auth -> {
-                    for (String[] uri : OpenUriConfig.OPEN_URIS) {
-                        auth.requestMatchers(
-                                HttpMethod.valueOf(uri[1]),
-                                uri[0]
-                        ).permitAll();
-                    }
 
-                    // تمام APIهای دیگر نیاز به احراز هویت دارند
-                    auth.anyRequest().authenticated();
-                })
+                .authorizeHttpRequests(auth -> auth
+
+                        .requestMatchers(
+                                HttpMethod.POST,
+                                "/auth/register"
+                        ).permitAll()
+
+                        .requestMatchers("/error").permitAll()
+
+                        .anyRequest().authenticated()
+                )
 
                 .authenticationProvider(authenticationProvider())
-
-                // اضافه‌کردن فیلتر JWT
-                .addFilterBefore(
-                        jwtAuthenticationFilter,
-                        UsernamePasswordAuthenticationFilter.class
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class
                 );
 
         return http.build();

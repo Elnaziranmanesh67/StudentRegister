@@ -10,7 +10,9 @@ import lombok.Data;
 @Data
 public class UserCreateModel {
     @Size(min = 8, max = 15)
+    @NotBlank
     private String username;
+    @NotBlank
     private String password;
     private String firstName;
     private String lastName;

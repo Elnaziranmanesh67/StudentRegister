@@ -1,6 +1,8 @@
 package com.example.studentregister.user.service;
 
 
+import com.example.studentregister.config.PrimitiveResponse;
+import com.example.studentregister.user.controller.model.ChangePasswordModel;
 import com.example.studentregister.user.controller.model.UserCreateModel;
 import com.example.studentregister.user.controller.model.UserModel;
 import com.example.studentregister.user.controller.model.UserOutPutModel;
@@ -23,15 +25,14 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-//    private final LoggedInService loggedInService;
-//    private final UserRolesAPIsRepository userRolesAPIsRepository;
+
 
     @Override
     public UserCreateModel create(UserCreateModel userModel) throws Exception {
 
         User user = userRepository.findByUsername(userModel.getUsername());
         if (user != null) {
-            throw new Exception("USER_REGISTER_BEFORE");
+            throw new Exception("کاربر قبلا ثبت نام کرده است");
         }
         user = this.convertModelToEntity(userModel);
         return convertEntityToModel(user);
@@ -54,25 +55,25 @@ public class UserServiceImpl implements UserService {
         return userCreateModel;
     }
 
-//    public PrimitiveResponse changePassword(ChangePasswordModel changePasswordModel) throws Exception {
-//        User user = userRepository.findByUsername(loggedInService.getUsername());
-//        if (user == null) {
-//            throw new BusinessException(BusinessExceptionKeyImpl.USER_NOT_FOUND);
-//        }
-//
-//        if (!changePasswordModel.getNewPassword().equals(changePasswordModel.getRepeatNewPassword())) {
-//            throw new BusinessException(BusinessExceptionKeyImpl.PASSWORD_IS_MISMATCH);
-//        }
-//
-//        if (changePasswordModel.getNewPassword().length() < 8) {
-//            throw new BusinessException(BusinessExceptionKeyImpl.PASSWORD_IS_INVALID);
-//        }
-//
-//        String newPassword = passwordEncoder.encode(changePasswordModel.getNewPassword());
-//        user.setPassword(newPassword);
-//        userRepository.save(user);
-//        return new PrimitiveResponse(Boolean.TRUE);
-//    }
+    public PrimitiveResponse changePassword(ChangePasswordModel changePasswordModel) throws Exception {
+        User user = userRepository.findByUsername(changePasswordModel.getUsername());
+        if (user == null) {
+            throw new Exception("USER_NOT_FOUND");
+        }
+
+        if (!changePasswordModel.getNewPassword().equals(changePasswordModel.getRepeatNewPassword())) {
+            throw new Exception ("PASSWORD_IS_MISMATCH");
+        }
+
+        if (changePasswordModel.getNewPassword().length() < 8) {
+            throw new Exception("PASSWORD_IS_INVALID");
+        }
+
+        String newPassword = passwordEncoder.encode(changePasswordModel.getNewPassword());
+        user.setPassword(newPassword);
+        userRepository.save(user);
+        return new PrimitiveResponse(Boolean.TRUE);
+    }
 
 
     @Override

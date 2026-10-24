@@ -143,10 +143,15 @@ public class SecurityConfig {
 
 
                 .authorizeHttpRequests(auth -> auth
-
                         .requestMatchers(
                                 HttpMethod.POST,
                                 "/auth/register"
+                        ).permitAll()
+
+                        .requestMatchers(
+                                HttpMethod.GET,
+                                "/auth/gender-custom-combo",
+                                "/auth/user-list-grid"
                         ).permitAll()
 
                         .requestMatchers("/error").permitAll()

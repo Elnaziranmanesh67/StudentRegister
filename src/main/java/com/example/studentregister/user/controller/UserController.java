@@ -22,18 +22,18 @@ import java.util.Optional;
 public class UserController {
 
     private final UserService userService;
-    @GetMapping("/user-listgrid")
+    @GetMapping("/user-list-grid")
     public Page<UserModel> userListGrid(@RequestParam(name = "searchFilterModel") Optional<String> filter) throws Exception {
         CustomObjectMapper customObjectMapper = new CustomObjectMapper();
         SearchFilterModel searchFilterModel = customObjectMapper.readValue(filter.get(), SearchFilterModel.class);
         return userService.userListGrid(searchFilterModel);
     }
 
-    @GetMapping(value = "/city-custom-combo")
+    @GetMapping(value = "/gender-custom-combo")
     public CustomComboModel CustomCombo(@RequestParam(name = "customComboFilterModel") @Valid Optional< String > customComboFilterModel) throws Exception {
         CustomObjectMapper customObjectMapper = new CustomObjectMapper();
         CustomComboFilterModel filterModel = customObjectMapper.readValue(customComboFilterModel.get(), CustomComboFilterModel.class);
-        return userService.customCombo(filterModel);
+        return userService.genderCustomCombo(filterModel);
     }
 
 }

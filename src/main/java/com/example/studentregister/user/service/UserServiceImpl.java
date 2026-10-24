@@ -118,11 +118,16 @@ public class UserServiceImpl implements UserService {
 
     public UserModel convertEntityToUserModel(User user) {
         UserModel userModel = new UserModel();
+        userModel.setFirstName(user.getFirstName());
+        userModel.setLastName(user.getLastName());
+        userModel.setNationalCode(user.getNationalCode());
+        userModel.setUsername(user.getUsername());
+        userModel.setId(user.getId());
         return userModel;
     }
 
     @Override
-    public CustomComboModel customCombo(CustomComboFilterModel model) throws Exception {
+    public CustomComboModel genderCustomCombo(CustomComboFilterModel model) throws Exception {
         Long count = 0L;
 
         List<CustomComboDataRowModel> dataList = new ArrayList<>();
@@ -134,7 +139,6 @@ public class UserServiceImpl implements UserService {
 
                 CustomComboDataRowModel customComboDataRowModel = new
                         CustomComboDataRowModel(item.getValue());
-
                 dataList.add(customComboDataRowModel);
             }
         }

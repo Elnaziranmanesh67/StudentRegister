@@ -16,5 +16,8 @@ public class CustomComboDataRowModel {
     private HashMap<String, Object> extMap = new HashMap<>();
 
     public CustomComboDataRowModel(String value) {
+        this.value = value;
+        this.caption = value;
+        this.elementStr = value;
     }
 }

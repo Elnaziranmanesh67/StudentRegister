@@ -540,3 +540,443 @@ Caused by: org.hibernate.HibernateException: Unable to determine Dialect without
 2026-10-24T22:34:22.038+03:30 TRACE 8968 --- [StudentRegister] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [ali1360]
 2026-10-24T22:34:22.038+03:30 TRACE 8968 --- [StudentRegister] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) <- [2694113521]
 2026-10-24T22:34:22.038+03:30 TRACE 8968 --- [StudentRegister] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (3:ENUM) <- [TEACHER]
+2026-10-24T22:44:55.612+03:30  INFO 6868 --- [StudentRegister] [main] c.e.s.StudentRegisterApplication         : Starting StudentRegisterApplication using Java 21.0.8 with PID 6868 (C:\Users\asus\Desktop\kish air web site\StudentRegister\target\classes started by asus in C:\Users\asus\Desktop\kish air web site\StudentRegister)
+2026-10-24T22:44:55.623+03:30 DEBUG 6868 --- [StudentRegister] [main] c.e.s.StudentRegisterApplication         : Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-10-24T22:44:55.624+03:30  INFO 6868 --- [StudentRegister] [main] c.e.s.StudentRegisterApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-10-24T22:44:57.900+03:30  INFO 6868 --- [StudentRegister] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-24T22:44:58.121+03:30  INFO 6868 --- [StudentRegister] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 198 ms. Found 6 JPA repository interfaces.
+2026-10-24T22:45:00.609+03:30  INFO 6868 --- [StudentRegister] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-10-24T22:45:00.645+03:30  INFO 6868 --- [StudentRegister] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-24T22:45:00.645+03:30  INFO 6868 --- [StudentRegister] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-10-24T22:45:00.812+03:30  INFO 6868 --- [StudentRegister] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 5049 ms
+2026-10-24T22:45:01.465+03:30  INFO 6868 --- [StudentRegister] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-10-24T22:45:01.640+03:30  INFO 6868 --- [StudentRegister] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-10-24T22:45:02.670+03:30  INFO 6868 --- [StudentRegister] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-24T22:45:02.804+03:30  INFO 6868 --- [StudentRegister] [main] com.zaxxer.hikari.HikariDataSource       : StudentRegisterPool - Starting...
+2026-10-24T22:45:04.293+03:30  INFO 6868 --- [StudentRegister] [main] com.zaxxer.hikari.pool.HikariPool        : StudentRegisterPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@76105ac0
+2026-10-24T22:45:04.305+03:30  INFO 6868 --- [StudentRegister] [main] com.zaxxer.hikari.HikariDataSource       : StudentRegisterPool - Start completed.
+2026-10-24T22:45:04.648+03:30  INFO 6868 --- [StudentRegister] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:13306/studentregister]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.4.6
+	Default catalog/schema: studentregister/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-24T22:45:07.636+03:30  INFO 6868 --- [StudentRegister] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-24T22:45:08.207+03:30 DEBUG 6868 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table score 
+       modify column academic_term enum ('FALL','SPRING','SUMMER','WINTER')
+2026-10-24T22:45:08.918+03:30 DEBUG 6868 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table score 
+       modify column grade_status enum ('COMPLETED','DRAFT','NOT_ENTERED','PUBLISHED')
+2026-10-24T22:45:08.947+03:30 DEBUG 6868 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table score 
+       modify column pass_status enum ('FAILED','PASSED','PENDING')
+2026-10-24T22:45:08.981+03:30 DEBUG 6868 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table student 
+       modify column gender enum ('FEMALE','MALE') not null
+2026-10-24T22:45:09.040+03:30 DEBUG 6868 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table student 
+       modify column school_grade enum ('GRADE_1','GRADE_10','GRADE_11','GRADE_12','GRADE_2','GRADE_3','GRADE_4','GRADE_5','GRADE_6','GRADE_7','GRADE_8','GRADE_9','GRADUATE','OTHER','PRESCHOOL','UNIVERSITY')
+2026-10-24T22:45:09.109+03:30 DEBUG 6868 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table teacher 
+       modify column education_level enum ('A1','A2','B1','B2','C1','C2','NATIVE')
+2026-10-24T22:45:09.265+03:30 DEBUG 6868 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table teacher 
+       modify column employment_status enum ('ACTIVE','INACTIVE','ON_LEAVE','TERMINATED')
+2026-10-24T22:45:09.310+03:30 DEBUG 6868 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table teacher 
+       modify column english_level enum ('A1','A2','B1','B2','C1','C2','NATIVE')
+2026-10-24T22:45:09.346+03:30 DEBUG 6868 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table teacher 
+       modify column gender enum ('FEMALE','MALE')
+2026-10-24T22:45:09.550+03:30  INFO 6868 --- [StudentRegister] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-24T22:45:09.764+03:30  INFO 6868 --- [StudentRegister] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-10-24T22:45:10.253+03:30 DEBUG 6868 --- [StudentRegister] [main] c.e.s.j.JwtAuthenticationFilter          : Filter 'jwtAuthenticationFilter' configured for use
+2026-10-24T22:45:10.636+03:30  INFO 6868 --- [StudentRegister] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-10-24T22:45:10.637+03:30  WARN 6868 --- [StudentRegister] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-10-24T22:45:11.085+03:30  WARN 6868 --- [StudentRegister] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-10-24T22:45:11.574+03:30 DEBUG 6868 --- [StudentRegister] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-10-24T22:45:13.129+03:30  INFO 6868 --- [StudentRegister] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-10-24T22:45:13.170+03:30  INFO 6868 --- [StudentRegister] [main] c.e.s.StudentRegisterApplication         : Started StudentRegisterApplication in 19.256 seconds (process running for 21.826)
+2026-10-24T22:47:33.140+03:30  INFO 6868 --- [StudentRegister] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-24T22:47:33.172+03:30  INFO 6868 --- [StudentRegister] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-24T22:47:33.308+03:30  INFO 6868 --- [StudentRegister] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 134 ms
+2026-10-24T22:47:33.386+03:30 DEBUG 6868 --- [StudentRegister] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /auth/gender-custom-combo
+2026-10-24T22:47:33.474+03:30 DEBUG 6868 --- [StudentRegister] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-10-24T22:52:15.455+03:30  INFO 14168 --- [StudentRegister] [main] c.e.s.StudentRegisterApplication         : Starting StudentRegisterApplication using Java 21.0.8 with PID 14168 (C:\Users\asus\Desktop\kish air web site\StudentRegister\target\classes started by asus in C:\Users\asus\Desktop\kish air web site\StudentRegister)
+2026-10-24T22:52:15.466+03:30 DEBUG 14168 --- [StudentRegister] [main] c.e.s.StudentRegisterApplication         : Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-10-24T22:52:15.468+03:30  INFO 14168 --- [StudentRegister] [main] c.e.s.StudentRegisterApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-10-24T22:52:17.586+03:30  INFO 14168 --- [StudentRegister] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-24T22:52:17.771+03:30  INFO 14168 --- [StudentRegister] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 163 ms. Found 6 JPA repository interfaces.
+2026-10-24T22:52:19.313+03:30  INFO 14168 --- [StudentRegister] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-10-24T22:52:19.342+03:30  INFO 14168 --- [StudentRegister] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-24T22:52:19.343+03:30  INFO 14168 --- [StudentRegister] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-10-24T22:52:19.591+03:30  INFO 14168 --- [StudentRegister] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 4007 ms
+2026-10-24T22:52:19.946+03:30  INFO 14168 --- [StudentRegister] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-10-24T22:52:20.081+03:30  INFO 14168 --- [StudentRegister] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-10-24T22:52:21.152+03:30  INFO 14168 --- [StudentRegister] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-24T22:52:21.222+03:30  INFO 14168 --- [StudentRegister] [main] com.zaxxer.hikari.HikariDataSource       : StudentRegisterPool - Starting...
+2026-10-24T22:52:22.683+03:30  INFO 14168 --- [StudentRegister] [main] com.zaxxer.hikari.pool.HikariPool        : StudentRegisterPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@2fa2143d
+2026-10-24T22:52:22.688+03:30  INFO 14168 --- [StudentRegister] [main] com.zaxxer.hikari.HikariDataSource       : StudentRegisterPool - Start completed.
+2026-10-24T22:52:23.114+03:30  INFO 14168 --- [StudentRegister] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:13306/studentregister]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.4.6
+	Default catalog/schema: studentregister/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-24T22:52:26.770+03:30  INFO 14168 --- [StudentRegister] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-24T22:52:27.137+03:30 DEBUG 14168 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table score 
+       modify column academic_term enum ('FALL','SPRING','SUMMER','WINTER')
+2026-10-24T22:52:27.425+03:30 DEBUG 14168 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table score 
+       modify column grade_status enum ('COMPLETED','DRAFT','NOT_ENTERED','PUBLISHED')
+2026-10-24T22:52:27.464+03:30 DEBUG 14168 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table score 
+       modify column pass_status enum ('FAILED','PASSED','PENDING')
+2026-10-24T22:52:27.498+03:30 DEBUG 14168 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table student 
+       modify column gender enum ('FEMALE','MALE') not null
+2026-10-24T22:52:27.547+03:30 DEBUG 14168 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table student 
+       modify column school_grade enum ('GRADE_1','GRADE_10','GRADE_11','GRADE_12','GRADE_2','GRADE_3','GRADE_4','GRADE_5','GRADE_6','GRADE_7','GRADE_8','GRADE_9','GRADUATE','OTHER','PRESCHOOL','UNIVERSITY')
+2026-10-24T22:52:27.579+03:30 DEBUG 14168 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table teacher 
+       modify column education_level enum ('A1','A2','B1','B2','C1','C2','NATIVE')
+2026-10-24T22:52:27.672+03:30 DEBUG 14168 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table teacher 
+       modify column employment_status enum ('ACTIVE','INACTIVE','ON_LEAVE','TERMINATED')
+2026-10-24T22:52:27.704+03:30 DEBUG 14168 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table teacher 
+       modify column english_level enum ('A1','A2','B1','B2','C1','C2','NATIVE')
+2026-10-24T22:52:27.741+03:30 DEBUG 14168 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table teacher 
+       modify column gender enum ('FEMALE','MALE')
+2026-10-24T22:52:27.884+03:30  INFO 14168 --- [StudentRegister] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-24T22:52:28.071+03:30  INFO 14168 --- [StudentRegister] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-10-24T22:52:28.621+03:30 DEBUG 14168 --- [StudentRegister] [main] c.e.s.j.JwtAuthenticationFilter          : Filter 'jwtAuthenticationFilter' configured for use
+2026-10-24T22:52:28.969+03:30  INFO 14168 --- [StudentRegister] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-10-24T22:52:28.970+03:30  WARN 14168 --- [StudentRegister] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-10-24T22:52:29.541+03:30  WARN 14168 --- [StudentRegister] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-10-24T22:52:30.011+03:30 DEBUG 14168 --- [StudentRegister] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-10-24T22:52:31.515+03:30  INFO 14168 --- [StudentRegister] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-10-24T22:52:31.532+03:30  INFO 14168 --- [StudentRegister] [main] c.e.s.StudentRegisterApplication         : Started StudentRegisterApplication in 17.449 seconds (process running for 20.319)
+2026-10-24T22:52:31.765+03:30  INFO 14168 --- [StudentRegister] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-24T22:52:31.766+03:30  INFO 14168 --- [StudentRegister] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-24T22:52:31.769+03:30  INFO 14168 --- [StudentRegister] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-10-24T22:52:31.799+03:30 DEBUG 14168 --- [StudentRegister] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /auth/register
+2026-10-24T22:52:31.828+03:30 DEBUG 14168 --- [StudentRegister] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-10-24T22:52:31.831+03:30 DEBUG 14168 --- [StudentRegister] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /auth/register
+2026-10-24T22:52:33.958+03:30 DEBUG 14168 --- [StudentRegister] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.national_code,
+        u1_0.password,
+        u1_0.role,
+        u1_0.username 
+    from
+        user_info u1_0 
+    where
+        u1_0.username=? 
+        and u1_0.national_code=? 
+        and u1_0.role=?
+2026-10-24T22:52:33.961+03:30 TRACE 14168 --- [StudentRegister] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [ali1560]
+2026-10-24T22:52:33.961+03:30 TRACE 14168 --- [StudentRegister] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) <- [2604113521]
+2026-10-24T22:52:33.962+03:30 TRACE 14168 --- [StudentRegister] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (3:ENUM) <- [TEACHER]
+2026-10-24T22:52:34.249+03:30 DEBUG 14168 --- [StudentRegister] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        next_val as id_val 
+    from
+        user_info_seq 
+    for
+        update
+2026-10-24T22:52:34.267+03:30 DEBUG 14168 --- [StudentRegister] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    update
+        user_info_seq 
+    set
+        next_val= ? 
+    where
+        next_val=?
+2026-10-24T22:52:34.630+03:30 DEBUG 14168 --- [StudentRegister] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    insert 
+    into
+        user_info
+        (created_at, first_name, last_name, national_code, password, role, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2026-10-24T22:52:34.635+03:30 TRACE 14168 --- [StudentRegister] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:TIMESTAMP) <- [Sat Oct 24 22:52:34 IRST 2026]
+2026-10-24T22:52:34.636+03:30 TRACE 14168 --- [StudentRegister] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) <- [علی]
+2026-10-24T22:52:34.637+03:30 TRACE 14168 --- [StudentRegister] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (3:VARCHAR) <- [احسان]
+2026-10-24T22:52:34.638+03:30 TRACE 14168 --- [StudentRegister] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (4:VARCHAR) <- [2604113521]
+2026-10-24T22:52:34.638+03:30 TRACE 14168 --- [StudentRegister] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (5:VARCHAR) <- [$2a$10$wdafQdeQroptNCcVwdBiweMbwNh14QJkuUacfFRtB2QWixNYYvKpe]
+2026-10-24T22:52:34.638+03:30 TRACE 14168 --- [StudentRegister] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (6:ENUM) <- [TEACHER]
+2026-10-24T22:52:34.639+03:30 TRACE 14168 --- [StudentRegister] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (7:VARCHAR) <- [ali1560]
+2026-10-24T22:52:34.639+03:30 TRACE 14168 --- [StudentRegister] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (8:INTEGER) <- [602]
+2026-10-24T22:52:38.855+03:30 DEBUG 14168 --- [StudentRegister] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
+2026-10-24T22:52:41.944+03:30 DEBUG 14168 --- [StudentRegister] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /auth/gender-custom-combo
+2026-10-24T22:52:41.944+03:30 DEBUG 14168 --- [StudentRegister] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-10-24T22:52:41.945+03:30 DEBUG 14168 --- [StudentRegister] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /auth/gender-custom-combo
+2026-10-24T22:56:04.436+03:30  WARN 14168 --- [StudentRegister] [StudentRegisterPool:housekeeper] com.zaxxer.hikari.pool.PoolBase          : StudentRegisterPool - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@6fd2b85f (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2026-10-24T22:58:24.398+03:30  INFO 11852 --- [StudentRegister] [main] c.e.s.StudentRegisterApplication         : Starting StudentRegisterApplication using Java 21.0.8 with PID 11852 (C:\Users\asus\Desktop\kish air web site\StudentRegister\target\classes started by asus in C:\Users\asus\Desktop\kish air web site\StudentRegister)
+2026-10-24T22:58:24.404+03:30 DEBUG 11852 --- [StudentRegister] [main] c.e.s.StudentRegisterApplication         : Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-10-24T22:58:24.405+03:30  INFO 11852 --- [StudentRegister] [main] c.e.s.StudentRegisterApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-10-24T22:58:26.750+03:30  INFO 11852 --- [StudentRegister] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-24T22:58:26.933+03:30  INFO 11852 --- [StudentRegister] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 162 ms. Found 6 JPA repository interfaces.
+2026-10-24T22:58:28.836+03:30  INFO 11852 --- [StudentRegister] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-10-24T22:58:28.882+03:30  INFO 11852 --- [StudentRegister] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-24T22:58:28.883+03:30  INFO 11852 --- [StudentRegister] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-10-24T22:58:29.229+03:30  INFO 11852 --- [StudentRegister] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 4702 ms
+2026-10-24T22:58:30.011+03:30  INFO 11852 --- [StudentRegister] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-10-24T22:58:30.352+03:30  INFO 11852 --- [StudentRegister] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-10-24T22:58:31.783+03:30  INFO 11852 --- [StudentRegister] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-24T22:58:31.877+03:30  INFO 11852 --- [StudentRegister] [main] com.zaxxer.hikari.HikariDataSource       : StudentRegisterPool - Starting...
+2026-10-24T22:58:34.981+03:30  INFO 11852 --- [StudentRegister] [main] com.zaxxer.hikari.pool.HikariPool        : StudentRegisterPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@76105ac0
+2026-10-24T22:58:34.991+03:30  INFO 11852 --- [StudentRegister] [main] com.zaxxer.hikari.HikariDataSource       : StudentRegisterPool - Start completed.
+2026-10-24T22:58:35.841+03:30  INFO 11852 --- [StudentRegister] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:13306/studentregister]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.4.6
+	Default catalog/schema: studentregister/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-24T22:58:40.305+03:30  INFO 11852 --- [StudentRegister] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-24T22:58:41.357+03:30 DEBUG 11852 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table score 
+       modify column academic_term enum ('FALL','SPRING','SUMMER','WINTER')
+2026-10-24T22:58:42.467+03:30 DEBUG 11852 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table score 
+       modify column grade_status enum ('COMPLETED','DRAFT','NOT_ENTERED','PUBLISHED')
+2026-10-24T22:58:42.554+03:30 DEBUG 11852 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table score 
+       modify column pass_status enum ('FAILED','PASSED','PENDING')
+2026-10-24T22:58:42.620+03:30 DEBUG 11852 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table student 
+       modify column gender enum ('FEMALE','MALE') not null
+2026-10-24T22:58:42.729+03:30 DEBUG 11852 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table student 
+       modify column school_grade enum ('GRADE_1','GRADE_10','GRADE_11','GRADE_12','GRADE_2','GRADE_3','GRADE_4','GRADE_5','GRADE_6','GRADE_7','GRADE_8','GRADE_9','GRADUATE','OTHER','PRESCHOOL','UNIVERSITY')
+2026-10-24T22:58:42.815+03:30 DEBUG 11852 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table teacher 
+       modify column education_level enum ('A1','A2','B1','B2','C1','C2','NATIVE')
+2026-10-24T22:58:42.962+03:30 DEBUG 11852 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table teacher 
+       modify column employment_status enum ('ACTIVE','INACTIVE','ON_LEAVE','TERMINATED')
+2026-10-24T22:58:43.048+03:30 DEBUG 11852 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table teacher 
+       modify column english_level enum ('A1','A2','B1','B2','C1','C2','NATIVE')
+2026-10-24T22:58:43.104+03:30 DEBUG 11852 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table teacher 
+       modify column gender enum ('FEMALE','MALE')
+2026-10-24T22:58:43.324+03:30  INFO 11852 --- [StudentRegister] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-24T22:58:49.028+03:30  INFO 11852 --- [StudentRegister] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-10-24T22:58:49.852+03:30 DEBUG 11852 --- [StudentRegister] [main] c.e.s.j.JwtAuthenticationFilter          : Filter 'jwtAuthenticationFilter' configured for use
+2026-10-24T22:58:50.210+03:30  INFO 11852 --- [StudentRegister] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-10-24T22:58:50.212+03:30  WARN 11852 --- [StudentRegister] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-10-24T22:58:50.743+03:30  WARN 11852 --- [StudentRegister] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-10-24T22:58:51.135+03:30 DEBUG 11852 --- [StudentRegister] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-10-24T22:58:52.107+03:30  INFO 11852 --- [StudentRegister] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-10-24T22:58:52.120+03:30  INFO 11852 --- [StudentRegister] [main] c.e.s.StudentRegisterApplication         : Started StudentRegisterApplication in 28.955 seconds (process running for 30.883)
+2026-10-24T22:58:55.949+03:30  INFO 11852 --- [StudentRegister] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-24T22:58:55.950+03:30  INFO 11852 --- [StudentRegister] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-24T22:58:55.952+03:30  INFO 11852 --- [StudentRegister] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-10-24T22:58:55.978+03:30 DEBUG 11852 --- [StudentRegister] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /auth/gender-custom-combo
+2026-10-24T22:58:56.007+03:30 DEBUG 11852 --- [StudentRegister] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-10-24T22:58:56.013+03:30 DEBUG 11852 --- [StudentRegister] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /auth/gender-custom-combo
+2026-10-24T23:02:18.258+03:30  INFO 7712 --- [StudentRegister] [main] c.e.s.StudentRegisterApplication         : Starting StudentRegisterApplication using Java 21.0.8 with PID 7712 (C:\Users\asus\Desktop\kish air web site\StudentRegister\target\classes started by asus in C:\Users\asus\Desktop\kish air web site\StudentRegister)
+2026-10-24T23:02:18.265+03:30 DEBUG 7712 --- [StudentRegister] [main] c.e.s.StudentRegisterApplication         : Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-10-24T23:02:18.267+03:30  INFO 7712 --- [StudentRegister] [main] c.e.s.StudentRegisterApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-10-24T23:02:20.237+03:30  INFO 7712 --- [StudentRegister] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-24T23:02:20.427+03:30  INFO 7712 --- [StudentRegister] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 168 ms. Found 6 JPA repository interfaces.
+2026-10-24T23:02:21.885+03:30  INFO 7712 --- [StudentRegister] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-10-24T23:02:21.946+03:30  INFO 7712 --- [StudentRegister] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-24T23:02:21.946+03:30  INFO 7712 --- [StudentRegister] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-10-24T23:02:22.103+03:30  INFO 7712 --- [StudentRegister] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 3719 ms
+2026-10-24T23:02:22.545+03:30  INFO 7712 --- [StudentRegister] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-10-24T23:02:22.680+03:30  INFO 7712 --- [StudentRegister] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-10-24T23:02:24.012+03:30  INFO 7712 --- [StudentRegister] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-24T23:02:24.104+03:30  INFO 7712 --- [StudentRegister] [main] com.zaxxer.hikari.HikariDataSource       : StudentRegisterPool - Starting...
+2026-10-24T23:02:27.884+03:30  INFO 7712 --- [StudentRegister] [main] com.zaxxer.hikari.pool.HikariPool        : StudentRegisterPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@41abee65
+2026-10-24T23:02:27.890+03:30  INFO 7712 --- [StudentRegister] [main] com.zaxxer.hikari.HikariDataSource       : StudentRegisterPool - Start completed.
+2026-10-24T23:02:29.451+03:30  INFO 7712 --- [StudentRegister] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:13306/studentregister]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.4.6
+	Default catalog/schema: studentregister/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-24T23:02:33.252+03:30  INFO 7712 --- [StudentRegister] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-24T23:02:34.155+03:30 DEBUG 7712 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table score 
+       modify column academic_term enum ('FALL','SPRING','SUMMER','WINTER')
+2026-10-24T23:02:34.827+03:30 DEBUG 7712 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table score 
+       modify column grade_status enum ('COMPLETED','DRAFT','NOT_ENTERED','PUBLISHED')
+2026-10-24T23:02:35.028+03:30 DEBUG 7712 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table score 
+       modify column pass_status enum ('FAILED','PASSED','PENDING')
+2026-10-24T23:02:35.387+03:30 DEBUG 7712 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table student 
+       modify column gender enum ('FEMALE','MALE') not null
+2026-10-24T23:02:35.609+03:30 DEBUG 7712 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table student 
+       modify column school_grade enum ('GRADE_1','GRADE_10','GRADE_11','GRADE_12','GRADE_2','GRADE_3','GRADE_4','GRADE_5','GRADE_6','GRADE_7','GRADE_8','GRADE_9','GRADUATE','OTHER','PRESCHOOL','UNIVERSITY')
+2026-10-24T23:02:35.715+03:30 DEBUG 7712 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table teacher 
+       modify column education_level enum ('A1','A2','B1','B2','C1','C2','NATIVE')
+2026-10-24T23:02:36.027+03:30 DEBUG 7712 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table teacher 
+       modify column employment_status enum ('ACTIVE','INACTIVE','ON_LEAVE','TERMINATED')
+2026-10-24T23:02:36.080+03:30 DEBUG 7712 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table teacher 
+       modify column english_level enum ('A1','A2','B1','B2','C1','C2','NATIVE')
+2026-10-24T23:02:36.148+03:30 DEBUG 7712 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table teacher 
+       modify column gender enum ('FEMALE','MALE')
+2026-10-24T23:02:36.524+03:30  INFO 7712 --- [StudentRegister] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-24T23:02:36.725+03:30  INFO 7712 --- [StudentRegister] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-10-24T23:02:37.429+03:30 DEBUG 7712 --- [StudentRegister] [main] c.e.s.j.JwtAuthenticationFilter          : Filter 'jwtAuthenticationFilter' configured for use
+2026-10-24T23:02:37.907+03:30  INFO 7712 --- [StudentRegister] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-10-24T23:02:37.908+03:30  WARN 7712 --- [StudentRegister] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-10-24T23:02:38.520+03:30  WARN 7712 --- [StudentRegister] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-10-24T23:02:38.915+03:30 DEBUG 7712 --- [StudentRegister] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-10-24T23:02:39.988+03:30  INFO 7712 --- [StudentRegister] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-10-24T23:02:40.000+03:30  INFO 7712 --- [StudentRegister] [main] c.e.s.StudentRegisterApplication         : Started StudentRegisterApplication in 22.913 seconds (process running for 25.009)
+2026-10-24T23:02:44.356+03:30  INFO 7712 --- [StudentRegister] [http-nio-8080-exec-2] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in the request target [/auth/user-listgrid?searchFilterModel={%22searchFilterBoxList%22:[{%22restrictionList%22:[]}],%22sortList%22:[{%22fieldName%22:%22id%22,%22type%22:%22DSC%22}],%22page%22:0,%22rows%22:1000} ]. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:473) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:279) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:71) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1307) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:2036) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:74) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:949) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:483) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:74) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-10-24T23:06:18.236+03:30  INFO 6704 --- [StudentRegister] [main] c.e.s.StudentRegisterApplication         : Starting StudentRegisterApplication using Java 21.0.8 with PID 6704 (C:\Users\asus\Desktop\kish air web site\StudentRegister\target\classes started by asus in C:\Users\asus\Desktop\kish air web site\StudentRegister)
+2026-10-24T23:06:18.254+03:30 DEBUG 6704 --- [StudentRegister] [main] c.e.s.StudentRegisterApplication         : Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-10-24T23:06:18.256+03:30  INFO 6704 --- [StudentRegister] [main] c.e.s.StudentRegisterApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-10-24T23:06:20.661+03:30  INFO 6704 --- [StudentRegister] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-24T23:06:20.831+03:30  INFO 6704 --- [StudentRegister] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 152 ms. Found 6 JPA repository interfaces.
+2026-10-24T23:06:22.315+03:30  INFO 6704 --- [StudentRegister] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-10-24T23:06:22.343+03:30  INFO 6704 --- [StudentRegister] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-24T23:06:22.344+03:30  INFO 6704 --- [StudentRegister] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-10-24T23:06:22.471+03:30  INFO 6704 --- [StudentRegister] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 4007 ms
+2026-10-24T23:06:22.816+03:30  INFO 6704 --- [StudentRegister] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-10-24T23:06:22.975+03:30  INFO 6704 --- [StudentRegister] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-10-24T23:06:24.157+03:30  INFO 6704 --- [StudentRegister] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-24T23:06:24.234+03:30  INFO 6704 --- [StudentRegister] [main] com.zaxxer.hikari.HikariDataSource       : StudentRegisterPool - Starting...
+2026-10-24T23:06:25.784+03:30  INFO 6704 --- [StudentRegister] [main] com.zaxxer.hikari.pool.HikariPool        : StudentRegisterPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@50e24ea4
+2026-10-24T23:06:25.789+03:30  INFO 6704 --- [StudentRegister] [main] com.zaxxer.hikari.HikariDataSource       : StudentRegisterPool - Start completed.
+2026-10-24T23:06:26.173+03:30  INFO 6704 --- [StudentRegister] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:13306/studentregister]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.4.6
+	Default catalog/schema: studentregister/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-24T23:06:29.284+03:30  INFO 6704 --- [StudentRegister] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-24T23:06:29.649+03:30 DEBUG 6704 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table score 
+       modify column academic_term enum ('FALL','SPRING','SUMMER','WINTER')
+2026-10-24T23:06:29.904+03:30 DEBUG 6704 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table score 
+       modify column grade_status enum ('COMPLETED','DRAFT','NOT_ENTERED','PUBLISHED')
+2026-10-24T23:06:29.938+03:30 DEBUG 6704 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table score 
+       modify column pass_status enum ('FAILED','PASSED','PENDING')
+2026-10-24T23:06:29.966+03:30 DEBUG 6704 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table student 
+       modify column gender enum ('FEMALE','MALE') not null
+2026-10-24T23:06:30.018+03:30 DEBUG 6704 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table student 
+       modify column school_grade enum ('GRADE_1','GRADE_10','GRADE_11','GRADE_12','GRADE_2','GRADE_3','GRADE_4','GRADE_5','GRADE_6','GRADE_7','GRADE_8','GRADE_9','GRADUATE','OTHER','PRESCHOOL','UNIVERSITY')
+2026-10-24T23:06:30.058+03:30 DEBUG 6704 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table teacher 
+       modify column education_level enum ('A1','A2','B1','B2','C1','C2','NATIVE')
+2026-10-24T23:06:30.108+03:30 DEBUG 6704 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table teacher 
+       modify column employment_status enum ('ACTIVE','INACTIVE','ON_LEAVE','TERMINATED')
+2026-10-24T23:06:30.172+03:30 DEBUG 6704 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table teacher 
+       modify column english_level enum ('A1','A2','B1','B2','C1','C2','NATIVE')
+2026-10-24T23:06:30.221+03:30 DEBUG 6704 --- [StudentRegister] [main] org.hibernate.SQL                        : 
+    alter table teacher 
+       modify column gender enum ('FEMALE','MALE')
+2026-10-24T23:06:30.369+03:30  INFO 6704 --- [StudentRegister] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-24T23:06:30.574+03:30  INFO 6704 --- [StudentRegister] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-10-24T23:06:31.097+03:30 DEBUG 6704 --- [StudentRegister] [main] c.e.s.j.JwtAuthenticationFilter          : Filter 'jwtAuthenticationFilter' configured for use
+2026-10-24T23:06:31.418+03:30  INFO 6704 --- [StudentRegister] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-10-24T23:06:31.419+03:30  WARN 6704 --- [StudentRegister] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-10-24T23:06:31.800+03:30  WARN 6704 --- [StudentRegister] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-10-24T23:06:32.167+03:30 DEBUG 6704 --- [StudentRegister] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-10-24T23:06:33.113+03:30  INFO 6704 --- [StudentRegister] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-10-24T23:06:33.123+03:30  INFO 6704 --- [StudentRegister] [main] c.e.s.StudentRegisterApplication         : Started StudentRegisterApplication in 16.8 seconds (process running for 21.868)
+2026-10-24T23:07:00.919+03:30  INFO 6704 --- [StudentRegister] [http-nio-8080-exec-3] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in the request target [/auth/user-listgrid?searchFilterModel={%22searchFilterBoxList%22:[{%22restrictionList%22:[]}],%22sortList%22:[{%22fieldName%22:%22id%22,%22type%22:%22DSC%22}],%22page%22:0,%22rows%22:1000} ]. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:473) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:279) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:71) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1307) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:2036) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:74) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:949) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:483) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:74) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-10-24T23:07:02.681+03:30  INFO 6704 --- [StudentRegister] [http-nio-8080-exec-4] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in the request target [/auth/user-listgrid?searchFilterModel={%22searchFilterBoxList%22:[{%22restrictionList%22:[]}],%22sortList%22:[{%22fieldName%22:%22id%22,%22type%22:%22DSC%22}],%22page%22:0,%22rows%22:1000} ]. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:473) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:279) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:71) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1307) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:2036) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:74) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:949) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:483) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:74) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-10-24T23:07:50.867+03:30  INFO 6704 --- [StudentRegister] [http-nio-8080-exec-8] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-24T23:07:50.883+03:30  INFO 6704 --- [StudentRegister] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-24T23:07:51.165+03:30  INFO 6704 --- [StudentRegister] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed initialization in 277 ms
+2026-10-24T23:07:51.384+03:30 DEBUG 6704 --- [StudentRegister] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /auth/user-listgrid?searchFilterModel=%7B%22searchFilterBoxList%22%3A%5B%7B%22restrictionList%22%3A%5B%5D%7D%5D%2C%22sortList%22%3A%5B%7B%22fieldName%22%3A%22id%22%2C%22type%22%3A%22DSC%22%7D%5D%2C%22page%22%3A0%2C%22rows%22%3A1000%7D
+2026-10-24T23:07:51.468+03:30 DEBUG 6704 --- [StudentRegister] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext

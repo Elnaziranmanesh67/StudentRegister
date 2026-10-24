@@ -2,21 +2,31 @@ package com.example.studentregister.user.service;
 
 
 import com.example.studentregister.config.PrimitiveResponse;
+import com.example.studentregister.enumRegister.GenderEnum;
+import com.example.studentregister.exception.BusinessException;
+import com.example.studentregister.exception.BusinessExceptionKeyImpl;
+import com.example.studentregister.search.CustomComboFilterModel;
+import com.example.studentregister.search.filter.*;
 import com.example.studentregister.user.controller.model.ChangePasswordModel;
 import com.example.studentregister.user.controller.model.UserCreateModel;
 import com.example.studentregister.user.controller.model.UserModel;
 import com.example.studentregister.user.controller.model.UserOutPutModel;
 import com.example.studentregister.user.orm.User;
 import com.example.studentregister.user.orm.UserRepository;
+import com.example.studentregister.user.orm.UserSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @Component
 @Service
@@ -32,9 +42,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserCreateModel create(UserCreateModel userModel) throws Exception {
 
-        User user = userRepository.findByUsernameAndNationalCode(userModel.getUsername(),userModel.getNationalCode());
+        User user = userRepository.findByUsernameAndNationalCode(userModel.getUsername(), userModel.getNationalCode());
         if (user != null) {
-            throw new Exception("کاربر قبلا ثبت نام کرده است");
+            throw new BusinessException(BusinessExceptionKeyImpl.USER_NOT_FOUND);
         }
         user = this.convertModelToEntity(userModel);
         return convertEntityToModel(user);
@@ -59,19 +69,18 @@ public class UserServiceImpl implements UserService {
     }
 
     public PrimitiveResponse changePassword(ChangePasswordModel changePasswordModel) throws Exception {
+
         User user = userRepository.findByUsername(changePasswordModel.getUsername());
         if (user == null) {
-            throw new Exception("USER_NOT_FOUND");
+            throw new BusinessException(BusinessExceptionKeyImpl.USER_NOT_FOUND);
         }
 
         if (!changePasswordModel.getNewPassword().equals(changePasswordModel.getRepeatNewPassword())) {
-            throw new Exception ("PASSWORD_IS_MISMATCH");
+            throw new BusinessException(BusinessExceptionKeyImpl.PASSWORD_IS_MISMATCH);
         }
-
         if (changePasswordModel.getNewPassword().length() < 8) {
-            throw new Exception("PASSWORD_IS_INVALID");
+            throw new BusinessException(BusinessExceptionKeyImpl.PASSWORD_IS_INVALID);
         }
-
         String newPassword = passwordEncoder.encode(changePasswordModel.getNewPassword());
         user.setPassword(newPassword);
         userRepository.save(user);
@@ -90,4 +99,45 @@ public class UserServiceImpl implements UserService {
         return userFind;
     }
 
+    @Override
+    public Page<UserModel> userListGrid(SearchFilterModel filterModel) throws Exception {
+        List<SearchFilterRestrictionModel> restrictionList = new ArrayList<>();
+
+//        restrictionList.add(new SearchFilterRestrictionModel(
+//                "phone",
+//                SearchFilterOperationEnum.EQUAL,
+//                loggedInService.getUsername(),
+//                SearchFilterNextConditionOperatorEnum.AND
+//        ));
+
+        filterModel.getSearchFilterBoxList().add(new SearchFilterBox(restrictionList, SearchFilterNextConditionOperatorEnum.AND));
+        return userRepository.findAll(filterModel.makeSpecification(new UserSpecification()), filterModel.makePageable())
+                .map(this::convertEntityToUserModel);
+    }
+
+
+    public UserModel convertEntityToUserModel(User user) {
+        UserModel userModel = new UserModel();
+        return userModel;
+    }
+
+    @Override
+    public CustomComboModel customCombo(CustomComboFilterModel model) throws Exception {
+        Long count = 0L;
+
+        List<CustomComboDataRowModel> dataList = new ArrayList<>();
+        count = Arrays.stream(GenderEnum.values()).toList().stream().count();
+        List<GenderEnum> genderEnums = Arrays.stream(GenderEnum.values()).toList();
+        if (!genderEnums.isEmpty()) {
+
+            for (GenderEnum item : genderEnums) {
+
+                CustomComboDataRowModel customComboDataRowModel = new
+                        CustomComboDataRowModel(item.getValue());
+
+                dataList.add(customComboDataRowModel);
+            }
+        }
+        return new CustomComboModel(dataList, Math.toIntExact((Long) count), model.getPage(), model.getRows());
+    }
 }

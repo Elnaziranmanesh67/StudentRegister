@@ -1,6 +1,8 @@
 
 package com.example.studentregister.loggin.service;
 
+import com.example.studentregister.exception.BusinessException;
+import com.example.studentregister.exception.BusinessExceptionKeyImpl;
 import com.example.studentregister.jwtService.JwtService;
 import com.example.studentregister.loggin.model.AuthenticationRequest;
 import com.example.studentregister.loggin.model.AuthenticationResponse;
@@ -18,6 +20,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @Transactional(rollbackFor = Exception.class)
 @RequiredArgsConstructor
@@ -29,45 +34,28 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final JwtService jwtService;
 
     @Override
-    public AuthenticationResponse register(RegisterRequest request)
-            throws Exception {
+    public AuthenticationResponse register(RegisterRequest request) throws Exception {
 
-        if (request == null
-                || request.getUsername() == null
-                || request.getUsername().isBlank()
-                || request.getNationalCode() == null
-                || request.getNationalCode().isBlank()
-                || request.getPassword() == null
-                || request.getPassword().isBlank()) {
-            throw new IllegalArgumentException(
-                    "نام کاربری، کد ملی و رمز عبور الزامی هستند"
-            );
+        if (request == null || request.getUsername() == null || request.getNationalCode() == null) {
+            throw new BusinessException(BusinessExceptionKeyImpl.REQUIRE_USERNAME_AND_NATIONAL_CODE);
         }
 
-        if (userRepository.findByUsername(request.getUsername()) != null) {
-            throw new IllegalArgumentException(
-                    "این نام کاربری قبلاً ثبت شده است"
-            );
+        if (userRepository.findByUsernameAndNationalCodeAndRole(request.getUsername(), request.getNationalCode(), request.getRole()) != null) {
+            throw new BusinessException(BusinessExceptionKeyImpl.USER_REGISTER_BEFORE);
         }
-
-        if (userRepository.findByNationalCode(request.getNationalCode()) != null) {
-            throw new IllegalArgumentException(
-                    "این کد ملی قبلاً ثبت شده است"
-            );
-        }
-
         if (request.getRole() == null) {
-            throw new IllegalArgumentException("نقش کاربر الزامی است");
+            throw new BusinessException(BusinessExceptionKeyImpl.ROLE_REQUIRE);
         }
 
-        if (request.getRole() == null
-                || (request.getRole() != RoleEnum.STUDENT
-                && request.getRole() != RoleEnum.TEACHER)) {
+        List<RoleEnum> roleEnums = new ArrayList<>();
+        roleEnums.add(RoleEnum.STUDENT);
+        roleEnums.add(RoleEnum.TEACHER);
+        roleEnums.add(RoleEnum.ADMIN);
 
-            throw new IllegalArgumentException(
-                    "نقش انتخاب‌شده معتبر نیست"
-            );
+        if (request.getRole() == null || !roleEnums.contains(request.getRole())) {
+            throw new BusinessException(BusinessExceptionKeyImpl.INVALID_ROLE);
         }
+
         User user = new User();
         user.setUsername(request.getUsername().trim());
         user.setNationalCode(request.getNationalCode().trim());

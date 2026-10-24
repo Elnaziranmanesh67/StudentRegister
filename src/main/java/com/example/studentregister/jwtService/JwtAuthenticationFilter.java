@@ -38,16 +38,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException {
         String authHeader = request.getHeader("Authorization");
 
-        // اگر هدر Authorization وجود ندارد، درخواست ادامه پیدا می‌کند.
-        // مسیرهای عمومی و محافظت‌شده در SecurityConfig تعیین می‌شوند.
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
 
         String jwt = authHeader.substring(7).trim();
-
-        // هدر Bearer بدون توکن معتبر نیست.
         if (jwt.isEmpty()) {
             writeUnauthorizedResponse(request, response);
             return;
@@ -61,13 +57,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 return;
             }
 
-            // اگر قبلاً کاربر احراز هویت شده باشد، دوباره احراز هویت نمی‌کنیم.
+
             if (SecurityContextHolder.getContext().getAuthentication() == null) {
 
                 UserDetails userDetails =
                         userDetailsService.loadUserByUsername(username);
-
-                // این پروژه از کلاس User به‌عنوان UserDetails استفاده می‌کند.
                 if (!(userDetails instanceof User user)
                         || !jwtService.isTokenValid(jwt, user)) {
 

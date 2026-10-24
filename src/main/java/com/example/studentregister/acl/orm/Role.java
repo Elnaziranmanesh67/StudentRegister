@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "ROLE_")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -44,7 +44,19 @@ public class Role {
     @JoinTable(name = "role_acln", joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "acl_id"),
             uniqueConstraints = @UniqueConstraint(columnNames = {"role_id", "acl_id"}))
-    private Set<Acl> permissions = new HashSet<>();
+    private Set<Acl> acls = new HashSet<>();
 
-
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", enabled=" + enabled +
+                ", createdAt=" + createdAt +
+                ", roles=" + roles +
+                ", acls=" + acls +
+                '}';
+    }
 }

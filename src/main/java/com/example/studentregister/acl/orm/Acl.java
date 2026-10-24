@@ -25,8 +25,20 @@ public class Acl {
 
     @Column(nullable = false)
     private boolean enabled = true;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private Date createdAt;
 
 
+    @Override
+    public String toString() {
+        return "Acl{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", enabled=" + enabled +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }

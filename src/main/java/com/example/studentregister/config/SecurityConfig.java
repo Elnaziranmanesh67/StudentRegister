@@ -62,8 +62,10 @@ public class SecurityConfig {
 
         http
                 // غیرفعال‌سازی CSRF برای API مبتنی بر JWT
-                .csrf(csrf -> csrf.disable())
+//                .csrf(csrf -> csrf.disable())
 
+                .cors(cors -> {})
+                .csrf(csrf -> csrf.disable())
                 // عدم استفاده از Session
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(

@@ -37,14 +37,10 @@ public String generateToken(User user){
     return  generateToken(extractClaim,user);
 }
 
-   // ساخت کلید رمزنگاری برای امضا و اعتبارسنجی JWT
     private Key getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
-
-
-    //خواندن تمام اطلاعات داخل JWT و بررسی امضای آن
     public Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSignInKey())
@@ -53,7 +49,6 @@ public String generateToken(User user){
                 .getBody();
     }
 
-    //استخراج تاریخ و زمان انقضای توکن
     public Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
@@ -63,7 +58,6 @@ public String generateToken(User user){
         return extractExpiration(token).before(new Date());
     }
 
-    //بررسی اعتبار توکن نسبت به یک کاربر مشخص
     public boolean isTokenValid(String token, User user) {
         try {
             String username = extractUsername(token);
@@ -104,8 +98,6 @@ public String generateToken(User user){
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
-
-
 
     public class SecretKeyGenerator {
         public static void main(String[] args) {

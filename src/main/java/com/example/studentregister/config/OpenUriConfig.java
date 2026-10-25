@@ -14,6 +14,7 @@ public final class OpenUriConfig {
             {"/user/change-password","PUT"},
             {"/user/check-role/{nationalCode}","GET"},
             {"/auth/login/token-less","POST"},
+            {"/student","POST"},
             {"/user/find-name-by-login/{username}", "GET"},
 
     };

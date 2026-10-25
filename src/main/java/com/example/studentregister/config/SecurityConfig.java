@@ -163,6 +163,10 @@ public class SecurityConfig {
                         ).permitAll()
 
                         .requestMatchers(
+                                HttpMethod.POST,
+                                "/student"
+                        ).permitAll()
+                        .requestMatchers(
                                 HttpMethod.GET,
                                 "/user/find-name-by-login/**"
                         ).permitAll()

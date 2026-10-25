@@ -13,7 +13,6 @@ import com.example.studentregister.user.orm.User;
 import com.example.studentregister.user.orm.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,13 +35,23 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public AuthenticationResponse register(RegisterRequest request) throws Exception {
 
+
         if (request == null || request.getUsername() == null || request.getNationalCode() == null) {
             throw new BusinessException(BusinessExceptionKeyImpl.REQUIRE_USERNAME_AND_NATIONAL_CODE);
         }
 
-        if (userRepository.findByUsernameAndNationalCodeAndRole(request.getUsername(), request.getNationalCode(), request.getRole()) != null) {
+        if (userRepository.findByUsername(request.getUsername()) != null) {
+            throw new BusinessException(BusinessExceptionKeyImpl.USER_NAME_REGISTER_BEFORE);
+        }
+
+        if (userRepository.findByNationalCode(request.getUsername()) != null) {
+            throw new BusinessException(BusinessExceptionKeyImpl.NATIONAL_CODE_REGISTER_BEFORE);
+        }
+
+        if (userRepository.findByUsernameAndNationalCode(request.getUsername(), request.getNationalCode()) != null) {
             throw new BusinessException(BusinessExceptionKeyImpl.USER_REGISTER_BEFORE);
         }
+
         if (request.getRole() == null) {
             throw new BusinessException(BusinessExceptionKeyImpl.ROLE_REQUIRE);
         }
@@ -79,14 +88,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public AuthenticationResponse authenticate(AuthenticationRequest request)
             throws Exception {
 
-        if (request == null
-                || request.getUsername() == null
-                || request.getUsername().isBlank()
-                || request.getPassword() == null
-                || request.getPassword().isBlank()) {
-            throw new IllegalArgumentException(
-                    "نام کاربری و رمز عبور الزامی هستند"
-            );
+        if (request == null || request.getUsername() == null || request.getUsername().isBlank() || request.getPassword() == null || request.getPassword().isBlank()) {
+            throw new BusinessException(BusinessExceptionKeyImpl.REQUIRE_USERNAME_AND_NATIONAL_CODE);
+
         }
 
         try {
@@ -97,17 +101,15 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                     )
             );
         } catch (AuthenticationException ex) {
-            throw new BadCredentialsException(
-                    "نام کاربری یا رمز عبور اشتباه است"
-            );
+            throw new BusinessException(BusinessExceptionKeyImpl.WRONG_USERNAME_PASSWORD);
+
         }
 
         User user = userRepository.findByUsername(request.getUsername());
 
         if (user == null) {
-            throw new BadCredentialsException(
-                    "نام کاربری یا رمز عبور اشتباه است"
-            );
+            throw new BusinessException(BusinessExceptionKeyImpl.WRONG_USERNAME_PASSWORD);
+
         }
 
         UserModel userModel = toUserModel(user);

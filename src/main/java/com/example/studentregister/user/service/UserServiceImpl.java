@@ -89,16 +89,15 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserOutPutModel checkRole(UserModel userModel) throws Exception {
-        User user = userRepository.findByUsernameAndNationalCode(userModel.getUsername(), userModel.getNationalCode());
+    public UserOutPutModel checkRole(String nationalCode) throws Exception {
+        User user = userRepository.findByNationalCode(nationalCode);
         if (user == null) {
-            throw new Exception("USER_NOT_FOUND");
+            throw new BusinessException(BusinessExceptionKeyImpl.USER_NOT_FOUND);
         }
         UserOutPutModel userFind = new UserOutPutModel();
         userFind.setRole(user.getRole());
         return userFind;
     }
-
     @Override
     public Page<UserModel> userListGrid(SearchFilterModel filterModel) throws Exception {
         List<SearchFilterRestrictionModel> restrictionList = new ArrayList<>();

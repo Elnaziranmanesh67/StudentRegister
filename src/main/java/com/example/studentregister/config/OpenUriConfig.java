@@ -9,8 +9,10 @@ public final class OpenUriConfig {
 
     public static final String[][] OPEN_URIS = {
             {"/auth/register", "POST"},
-            {"/auth/gender-custom-combo", "GET"},
-            {"/auth/user-list-grid", "GET"}
+            {"/user/gender-custom-combo", "GET"},
+            {"/user/user-list-grid", "GET"},
+            {"/user/change-password","PUT"},
+            {"/user/check-role/{nationalCode}","GET"}
 
     };
 }

@@ -14,13 +14,11 @@ import org.springframework.stereotype.Service;
 @Service
 
 public interface UserService {
-    UserOutPutModel checkRole(UserModel userModel) throws Exception;
-
+    UserOutPutModel checkRole(String nationalCode) throws Exception;
     UserCreateModel create(UserCreateModel userModel) throws Exception;
+    PrimitiveResponse changePassword(ChangePasswordModel changePasswordModel) throws Exception;
 
     Page<UserModel> userListGrid(SearchFilterModel filterModel) throws Exception;
-
-    PrimitiveResponse changePassword(ChangePasswordModel changePasswordModel) throws Exception;
 
     CustomComboModel genderCustomCombo(CustomComboFilterModel model) throws Exception;
 }

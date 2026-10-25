@@ -147,11 +147,24 @@ public class SecurityConfig {
                                 HttpMethod.POST,
                                 "/auth/register"
                         ).permitAll()
+                        .requestMatchers(
+                                HttpMethod.PUT,
+                                "/user/change-password"
+                        ).permitAll()
 
                         .requestMatchers(
                                 HttpMethod.GET,
-                                "/auth/gender-custom-combo",
-                                "/auth/user-list-grid"
+                                "/user/check-role/**"
+                        ).permitAll()
+
+                        .requestMatchers(
+                                HttpMethod.POST,
+                                "/auth/login/token-less"
+                        ).permitAll()
+                        .requestMatchers(
+                                HttpMethod.GET,
+                                "/user/gender-custom-combo",
+                                "/user/user-list-grid"
                         ).permitAll()
 
                         .requestMatchers("/error").permitAll()

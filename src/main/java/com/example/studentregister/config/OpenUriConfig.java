@@ -12,7 +12,8 @@ public final class OpenUriConfig {
             {"/user/gender-custom-combo", "GET"},
             {"/user/user-list-grid", "GET"},
             {"/user/change-password","PUT"},
-            {"/user/check-role/{nationalCode}","GET"}
+            {"/user/check-role/{nationalCode}","GET"},
+            {"/auth/login/token-less","POST"}
 
     };
 }

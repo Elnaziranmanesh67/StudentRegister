@@ -1,5 +1,7 @@
 package com.example.studentregister.student.service;
 
+import com.example.studentregister.exception.BusinessException;
+import com.example.studentregister.exception.BusinessExceptionKeyImpl;
 import com.example.studentregister.score.controller.FindInfoModel;
 import com.example.studentregister.student.controller.StudentModel;
 import com.example.studentregister.student.orm.Student;
@@ -25,6 +27,10 @@ public class StudentServiceImpl implements StudentService {
 
     public StudentModel create(StudentModel studentModel) throws Exception {
 
+        Student findStudent=studentRepository.findByNationalCode(studentModel.getNationalCode());
+        if(findStudent!=null){
+            throw new BusinessException(BusinessExceptionKeyImpl.USER_REGISTER_BEFORE);
+        }
         Student student = Student.builder()
                 .firstName(studentModel.getFirstName())
                 .lastName(studentModel.getLastName())

@@ -18,19 +18,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class LogginController {
 
-    private final AuthenticationService service;
+    private final AuthenticationService authenticationServic;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@Valid @RequestBody RegisterRequest request) throws Exception {
 
-        AuthenticationResponse response = service.register(request);
+        AuthenticationResponse response = authenticationServic.register(request);
         return ResponseEntity.ok(response);
     }
 
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> authenticate(@Valid @RequestBody AuthenticationRequest request) throws Exception {
 
-        AuthenticationResponse response = service.authenticate(request);
+        AuthenticationResponse response = authenticationServic.authenticate(request);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/login/token-less")
+    public ResponseEntity<AuthenticationResponse> authenticateTokenLess(@Valid @RequestBody AuthenticationRequest request) throws Exception {
+
+        AuthenticationResponse response = authenticationServic.authenticate(request);
         return ResponseEntity.ok(response);
     }
 }
+

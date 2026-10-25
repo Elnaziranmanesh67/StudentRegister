@@ -161,6 +161,7 @@ public class SecurityConfig {
                                 HttpMethod.POST,
                                 "/auth/login/token-less"
                         ).permitAll()
+
                         .requestMatchers(
                                 HttpMethod.GET,
                                 "/user/gender-custom-combo",

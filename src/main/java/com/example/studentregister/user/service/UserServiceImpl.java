@@ -7,10 +7,7 @@ import com.example.studentregister.exception.BusinessException;
 import com.example.studentregister.exception.BusinessExceptionKeyImpl;
 import com.example.studentregister.search.CustomComboFilterModel;
 import com.example.studentregister.search.filter.*;
-import com.example.studentregister.user.controller.model.ChangePasswordModel;
-import com.example.studentregister.user.controller.model.UserCreateModel;
-import com.example.studentregister.user.controller.model.UserModel;
-import com.example.studentregister.user.controller.model.UserOutPutModel;
+import com.example.studentregister.user.controller.model.*;
 import com.example.studentregister.user.orm.User;
 import com.example.studentregister.user.orm.UserRepository;
 import com.example.studentregister.user.orm.UserSpecification;
@@ -142,5 +139,19 @@ public class UserServiceImpl implements UserService {
             }
         }
         return new CustomComboModel(dataList, Math.toIntExact((Long) count), model.getPage(), model.getRows());
+    }
+
+    @Override
+    public FindNameModel findNameByLogin(String username) throws Exception {
+       User user=userRepository.findByUsername(username);
+       if(user==null){
+           throw  new BusinessException(BusinessExceptionKeyImpl.USER_NOT_FOUND);
+       }
+
+       FindNameModel findNameModel=new FindNameModel();
+       findNameModel.setFirstName(user.getFirstName());
+       findNameModel.setLastName(user.getLastName());
+       findNameModel.setUsername(user.getUsername());
+       return findNameModel;
     }
 }

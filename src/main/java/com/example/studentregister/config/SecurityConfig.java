@@ -164,6 +164,11 @@ public class SecurityConfig {
 
                         .requestMatchers(
                                 HttpMethod.GET,
+                                "/user/find-name-by-login/**"
+                        ).permitAll()
+
+                        .requestMatchers(
+                                HttpMethod.GET,
                                 "/user/gender-custom-combo",
                                 "/user/user-list-grid"
                         ).permitAll()

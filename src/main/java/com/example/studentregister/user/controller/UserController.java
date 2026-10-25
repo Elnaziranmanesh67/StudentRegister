@@ -6,6 +6,7 @@ import com.example.studentregister.search.CustomComboFilterModel;
 import com.example.studentregister.search.filter.CustomComboModel;
 import com.example.studentregister.search.filter.SearchFilterModel;
 import com.example.studentregister.user.controller.model.ChangePasswordModel;
+import com.example.studentregister.user.controller.model.FindNameModel;
 import com.example.studentregister.user.controller.model.UserModel;
 import com.example.studentregister.user.controller.model.UserOutPutModel;
 import com.example.studentregister.user.service.UserService;
@@ -46,4 +47,9 @@ public class UserController {
         return userService.changePassword(changePasswordModel);
     }
 
+
+    @GetMapping("/find-name-by-login/{username}")
+    public FindNameModel findNameByLogin(@PathVariable String username) throws Exception {
+        return userService.findNameByLogin(username);
+    }
 }

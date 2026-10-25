@@ -13,7 +13,8 @@ public final class OpenUriConfig {
             {"/user/user-list-grid", "GET"},
             {"/user/change-password","PUT"},
             {"/user/check-role/{nationalCode}","GET"},
-            {"/auth/login/token-less","POST"}
+            {"/auth/login/token-less","POST"},
+            {"/user/find-name-by-login/{username}", "GET"},
 
     };
 }
